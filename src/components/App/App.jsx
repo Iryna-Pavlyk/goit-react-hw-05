@@ -8,6 +8,15 @@ import HomePage from "../../pages/HomePage/HomePage";
 import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
 import MoviesPage from "../../pages/MoviesPage/MoviesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+// import axios from "axios";
+
+// const API_KEY = "6e662dec114f18736bafeb49ccd5fe2c";
+// axios.defaults.baseURL = "https://api.themoviedb.org/3/search/movie";
+// const options = {
+//   headers: {
+//     Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTY2MmRlYzExNGYxODczNmJhZmViNDljY2Q1ZmUyYyIsInN1YiI6IjY2MjdjMTFkMmUyYjJjMDE2MzY3OWE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aW67E9Kj2wZqqFKkxi4hn8itzsPWtpm8iNql3fjutYE",
+//   },
+// };
 
 const App = () => {
   return (
