@@ -35,6 +35,14 @@ const MoviesPage = () => {
     movie.original_title.toLowerCase().includes(query.toLowerCase())
   );
 
+  // const filteredValues = useMemo(() => {
+  // return (
+  //   movies.filter((movie) =>
+  //     movie.original_title.toLowerCase().includes(query.toLowerCase())
+  //   ),
+  //   [movies, query]
+  // );
+
   return (
     <div className={css.wrap}>
       <form onSubmit={(evt) => setQuery(evt.target.value)}>
