@@ -1,5 +1,5 @@
 import css from "./HomePage.module.css";
-import getTrendMovie from "../../movies-api";
+import { getTrendMovie } from "../../movies-api";
 import { useEffect, useState } from "react";
 
 const HomePage = () => {
@@ -9,7 +9,6 @@ const HomePage = () => {
     async function getMovies() {
       const data = await getTrendMovie();
       setMovies((prevMovies) => [...prevMovies, ...data]);
-      console.log(getTrendMovie());
     }
     getMovies();
   }, []);

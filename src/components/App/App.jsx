@@ -10,9 +10,6 @@ import MoviesPage from "../../pages/MoviesPage/MoviesPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 const App = () => {
-  // const [page, setPage] = useState(1);
-  // const [query, setQuery] = useState("");
-
   return (
     <div className={css.wrapper}>
       <Navigation />
