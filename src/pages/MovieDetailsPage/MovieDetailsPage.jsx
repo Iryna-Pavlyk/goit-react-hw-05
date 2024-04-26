@@ -47,13 +47,13 @@ const MovieDetailsPage = () => {
                 <p>{movies.overview}</p>
               </div>
             )}
-            {movies.genres.length > 0 && (
+            {movies.genres > 0 && (
               <div>
                 <h4>Genres</h4>
                 <p>{movies.genres.map((genre) => genre.name)}</p>
               </div>
             )}
-            {movies.production_countries.length > 0 && (
+            {movies.production_countries > 0 && (
               <div>
                 <h4>Country</h4>
                 <p>
