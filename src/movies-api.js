@@ -43,8 +43,7 @@ export const getMovieDetails = async (movieId) => {
       api_key: API_KEY,
     },
   });
-
-  return response.data.results;
+  return response.data;
 };
 
 export const getMovieCredits = async (movieId) => {

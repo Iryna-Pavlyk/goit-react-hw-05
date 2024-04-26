@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
-// `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
-
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);

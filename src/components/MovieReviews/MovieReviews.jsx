@@ -1,6 +1,6 @@
 import css from "./MovieReviews.module.css";
 
-const MovieRewiews = () => {
+const MovieReviews = () => {
   return <div className={css.wrap}></div>;
 };
-export default MovieRewiews;
+export default MovieReviews;
