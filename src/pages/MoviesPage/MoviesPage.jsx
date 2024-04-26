@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { searchMovie } from "../../movies-api";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState("batman");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (query === "") {
@@ -13,8 +17,16 @@ const MoviesPage = () => {
     }
 
     async function getSearchMovie() {
-      const data = await searchMovie(query);
-      setMovies(data);
+      try {
+        setError(false);
+        setLoading(true);
+        const data = await searchMovie(query);
+        setMovies(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     }
     getSearchMovie();
   }, [query]);
@@ -44,6 +56,8 @@ const MoviesPage = () => {
           })}
         </ul>
       </div>
+      {error && <ErrorMessage />}
+      {loading && <Loader />}
     </div>
   );
 };
