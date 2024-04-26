@@ -47,17 +47,29 @@ const MovieDetailsPage = () => {
                 <p>{movies.overview}</p>
               </div>
             )}
-            {movies.genres > 0 && (
+            {movies.genres && (
               <div>
                 <h4>Genres</h4>
-                <p>{movies.genres.map((genre) => genre.name)}</p>
+                <p>
+                  {movies.genres.map((genre) => (
+                    <ul key={genre.id}>
+                      <li>{genre.name}</li>
+                    </ul>
+                  ))}
+                </p>
               </div>
             )}
-            {movies.production_countries > 0 && (
+            {movies.production_countries && (
               <div>
                 <h4>Country</h4>
                 <p>
-                  {movies.production_countries.map((country) => country.name)}
+                  {movies.production_countries.map((country) => (
+                    <ul
+                      key={movies.production_countries.indexOf("country.name")}
+                    >
+                      <li>{country.name}</li>
+                    </ul>
+                  ))}
                 </p>
               </div>
             )}
