@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { searchMovie } from "../../movies-api";
+import { CiVault } from "react-icons/ci";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./MoviesPage.module.css";
@@ -49,19 +50,23 @@ const MoviesPage = () => {
 
   return (
     <div className={css.wrap}>
-      <input
-        type="text"
-        value={queryParam}
-        onChange={(evt) => changeQueryFilter(evt.target.value)}
-      />
-
-      {/* <form onSubmit={(evt) => changeQueryFilter(evt.target.value)}>
+      <div className={css.form}>
         <input
+          className={css.input}
           type="text"
           value={queryParam}
           onChange={(evt) => changeQueryFilter(evt.target.value)}
+          placeholder="Search movies"
         />
-        <button type="submit">Search</button>
+      </div>
+
+      {/* <form onSubmit={(evt) => changeQueryFilter(evt.target.value)} className={css.form}>
+        <input className={css.input}
+          type="text"
+          value={queryParam}
+          onChange={(evt) => changeQueryFilter(evt.target.value)} placeholder="Search movies"
+        />
+        <button type="submit" className={css.btn}>Search</button>
       </form> */}
 
       <div>
@@ -69,9 +74,16 @@ const MoviesPage = () => {
           {filteredValues.map((value) => {
             return (
               <li key={value.id}>
-                <Link to={`/movies/${value.id}`} state={location}>
-                  {value.original_title}
-                </Link>
+                <div className={css.wrapLink}>
+                  <CiVault className={css.icon} width={14} />
+                  <Link
+                    to={`/movies/${value.id}`}
+                    state={location}
+                    className={css.link}
+                  >
+                    {value.original_title}
+                  </Link>
+                </div>
               </li>
             );
           })}

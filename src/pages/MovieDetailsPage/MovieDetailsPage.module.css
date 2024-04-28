@@ -2,3 +2,32 @@
   display: flex;
   gap: 20px;
 }
+
+.linkBack:hover,
+.infoLink:hover {
+  color: darkblue;
+}
+
+.linkBack {
+  margin-bottom: 7px;
+}
+
+.movieDesc,
+.infoDesc {
+  font-size: 16px;
+}
+.movieTitle {
+  font-size: 34px;
+}
+
+.genresList,
+.countriesList {
+  display: inline-flex;
+  margin-right: 7px;
+}
+
+.wrapScore,
+.wrapOverview,
+.wrapGenres {
+  margin-bottom: 5px;
+}

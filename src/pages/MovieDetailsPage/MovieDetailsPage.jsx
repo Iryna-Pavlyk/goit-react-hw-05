@@ -36,7 +36,9 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={css.wrap}>
-      <Link to={backLinkUrlRef.current}>Go back</Link>
+      <div className={css.linkBack}>
+        <Link to={backLinkUrlRef.current}>Go back</Link>
+      </div>
       <ul>
         <li className={css.item}>
           <img
@@ -49,22 +51,30 @@ const MovieDetailsPage = () => {
             width={500}
           />
 
-          <div>
-            <h2>{movies.original_title}</h2>
-            <p>Release date: {movies.release_date}</p>
-            {movies.vote_average && <p>User score: {movies.vote_average}</p>}
+          <div className={css.movieDesc}>
+            <h2 className={css.movieTitle}>{movies.original_title}</h2>
+            <div className={css.wrapScore}>
+              <p className={css.movieText}>
+                Release date: {movies.release_date}
+              </p>
+              {movies.vote_average && (
+                <p className={css.movieText}>
+                  User score: {movies.vote_average}
+                </p>
+              )}
+            </div>
             {movies.overview && (
-              <div>
+              <div className={css.wrapOverview}>
                 <h4>Overview</h4>
                 <p>{movies.overview}</p>
               </div>
             )}
             {movies.genres && (
-              <div>
+              <div className={css.wrapGenres}>
                 <h4>Genres</h4>
                 <p>
                   {movies.genres.map((genre) => (
-                    <ul key={genre.id}>
+                    <ul key={genre.id} className={css.genresList}>
                       <li>{genre.name}</li>
                     </ul>
                   ))}
@@ -78,6 +88,7 @@ const MovieDetailsPage = () => {
                   {movies.production_countries.map((country) => (
                     <ul
                       key={movies.production_countries.indexOf("country.name")}
+                      className={css.countriesList}
                     >
                       <li>{country.name}</li>
                     </ul>
@@ -90,14 +101,18 @@ const MovieDetailsPage = () => {
       </ul>
       <hr />
 
-      <div>
+      <div className={css.infoDesc}>
         <h4>Additional information</h4>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" className={css.infoLink}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" className={css.infoLink}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>

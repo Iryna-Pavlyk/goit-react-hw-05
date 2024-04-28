@@ -1,0 +1,21 @@
+.title {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.wrapLink {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.link {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.link:hover {
+  color: darkblue;
+}

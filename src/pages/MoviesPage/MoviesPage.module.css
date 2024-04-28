@@ -1,0 +1,39 @@
+.form {
+  margin-bottom: 20px;
+}
+
+.input {
+  margin-right: 10px;
+  outline: none;
+  border: solid 1px gray;
+  border-radius: 4px;
+  width: 270px;
+  height: 40px;
+  font-size: 18px;
+}
+
+/* .btn {
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+}
+.btn:hover {
+  color: darkblue;
+} */
+
+.wrapLink {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.link {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.link:hover {
+  color: darkblue;
+}

@@ -1,0 +1,19 @@
+.nav {
+  margin-bottom: 13px;
+}
+
+.link {
+  font-size: 32px;
+  margin-right: 3px;
+}
+
+.active {
+  background-color: rgb(218, 214, 209);
+  color: darkblue;
+  border-top-right-radius: 6px;
+  padding: 3px;
+}
+
+.link:hover {
+  color: darkblue;
+}
