@@ -12,6 +12,8 @@ const MovieCast = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (!movieId) return;
+
     async function getCreditsById() {
       try {
         setError(false);
@@ -27,18 +29,25 @@ const MovieCast = () => {
     getCreditsById();
   }, [movieId]);
 
+  const defaultImg =
+    "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
+
   return (
     <div className={css.wrap}>
       <ul>
         {cast.map((item) => {
           return (
             <li key={item.id}>
-              {item.profile_path && (
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${item.profile_path}`}
-                  alt={item.original_name}
-                />
-              )}
+              <img
+                src={
+                  item.profile_path
+                    ? `https://image.tmdb.org/t/p/w200/${item.profile_path}`
+                    : defaultImg
+                }
+                alt={item.original_name}
+                width={200}
+              />
+
               <p>{item.original_name}</p>
               <p>Character: {item.character}</p>
               <hr />

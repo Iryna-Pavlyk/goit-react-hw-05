@@ -12,6 +12,8 @@ const MovieReviews = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (!movieId) return;
+
     async function getReviewsById() {
       try {
         setError(false);

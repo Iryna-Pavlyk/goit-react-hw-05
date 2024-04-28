@@ -58,8 +58,8 @@ const MoviesPage = () => {
       {/* <form onSubmit={(evt) => changeQueryFilter(evt.target.value)}>
         <input
           type="text"
-          value={query}
-          onChange={(evt) => setQuery(evt.target.value)}
+          value={queryParam}
+          onChange={(evt) => changeQueryFilter(evt.target.value)}
         />
         <button type="submit">Search</button>
       </form> */}
