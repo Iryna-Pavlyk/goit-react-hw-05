@@ -54,7 +54,7 @@ export const getMovieCredits = async (movieId) => {
     },
   });
 
-  return response.data.results;
+  return response.data;
 };
 
 export const getMovieReviews = async (movieId) => {

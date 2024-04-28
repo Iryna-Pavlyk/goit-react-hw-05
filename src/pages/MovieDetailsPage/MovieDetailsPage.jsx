@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { getMovieDetails } from "../../movies-api";
 import css from "./MovieDetailsPage.module.css";
 import { useParams } from "react-router-dom";
@@ -35,7 +35,7 @@ const MovieDetailsPage = () => {
           {movies.backdrop_path && (
             <img
               src={`https://image.tmdb.org/t/p/w500/${movies.backdrop_path}`}
-              alt=""
+              alt={movies.original_title}
             />
           )}
           <div>
@@ -77,6 +77,7 @@ const MovieDetailsPage = () => {
         </li>
       </ul>
       <hr />
+
       <div>
         <h4>Additional information</h4>
         <ul>
@@ -89,6 +90,8 @@ const MovieDetailsPage = () => {
         </ul>
       </div>
       <hr />
+
+      <Outlet />
 
       {error && <ErrorMessage />}
       {loading && <Loader />}
