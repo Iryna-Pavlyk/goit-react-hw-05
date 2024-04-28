@@ -26,22 +26,24 @@ const MovieReviews = () => {
     }
     getReviewsById();
   }, [movieId]);
-  //
-  console.log(reviews);
-  //
+
   return (
     <div className={css.wrap}>
-      <ul>
-        {reviews.map((review) => {
-          return (
-            <li key={review.id}>
-              <b>Author: {review.author}</b>
-              <p>{review.content}</p>
-              <hr />
-            </li>
-          );
-        })}
-      </ul>
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map((review) => {
+            return (
+              <li key={review.id}>
+                <b>Author: {review.author}</b>
+                <p>{review.content}</p>
+                <hr />
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>We don`t have any reviews for this movie.</p>
+      )}
 
       {error && <ErrorMessage />}
       {loading && <Loader />}
