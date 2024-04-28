@@ -36,7 +36,6 @@ const MovieReviews = () => {
           return (
             <li key={review.id}>
               <b>Author: {review.author}</b>
-              <p>Created: {review.created_at.slice(0, 10)}</p>
               <p>{review.content}</p>
               <hr />
             </li>

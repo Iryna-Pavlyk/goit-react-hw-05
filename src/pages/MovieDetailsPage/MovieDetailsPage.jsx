@@ -40,7 +40,7 @@ const MovieDetailsPage = () => {
           )}
           <div>
             <h2>{movies.original_title}</h2>
-            <p>{movies.release_date.slice(0, 4)}</p>
+            <p>Release date: {movies.release_date}</p>
             {movies.vote_average && <p>User score: {movies.vote_average}</p>}
             {movies.overview && (
               <div>
