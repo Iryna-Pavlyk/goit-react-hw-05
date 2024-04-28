@@ -12,7 +12,7 @@
   font-size: 18px;
 }
 
-/* .btn {
+.btn {
   padding: 13px;
   border: none;
   border-radius: 8px;
@@ -20,7 +20,7 @@
 }
 .btn:hover {
   color: darkblue;
-} */
+}
 
 .wrapLink {
   display: flex;

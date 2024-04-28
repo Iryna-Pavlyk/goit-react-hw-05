@@ -1,0 +1,12 @@
+.wrap {
+  font-size: 20px;
+  display: inline-flex;
+}
+
+.link {
+  color: darkblue;
+  margin-left: 5px;
+}
+.link:hover {
+  color: blue;
+}

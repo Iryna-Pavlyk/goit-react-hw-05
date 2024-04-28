@@ -27,8 +27,8 @@ export const getTrendMovie = async () => {
 export const searchMovie = async (query) => {
   const response = await axios.get("/search/movie", {
     params: {
-      query: query,
       options,
+      query: query,
       api_key: API_KEY,
     },
   });

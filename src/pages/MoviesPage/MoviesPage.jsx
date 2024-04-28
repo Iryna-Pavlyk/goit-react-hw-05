@@ -7,7 +7,6 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  // const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -15,23 +14,23 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get("query") ?? "";
 
-  const changeQueryFilter = (newFilter) => {
-    searchParams.set("query", newFilter);
-    setSearchParams(searchParams);
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    const form = evt.currentTarget;
+    const value = form.elements.search.value.trim();
+    value && setSearchParams({ query: value });
+    form.reset();
   };
 
   const location = useLocation();
 
   useEffect(() => {
-    if (queryParam === "") {
-      return;
-    }
-
-    async function getSearchMovie() {
+    async function getSearchMovie(searchQuery) {
       try {
+        setMovies([]);
         setError(false);
         setLoading(true);
-        const data = await searchMovie(queryParam);
+        const data = await searchMovie(searchQuery);
         setMovies(data);
       } catch (error) {
         setError(true);
@@ -39,7 +38,7 @@ const MoviesPage = () => {
         setLoading(false);
       }
     }
-    getSearchMovie();
+    getSearchMovie(queryParam);
   }, [queryParam]);
 
   const filteredValues = useMemo(() => {
@@ -50,24 +49,17 @@ const MoviesPage = () => {
 
   return (
     <div className={css.wrap}>
-      <div className={css.form}>
+      <form onSubmit={handleSubmit} className={css.form}>
         <input
           className={css.input}
           type="text"
-          value={queryParam}
-          onChange={(evt) => changeQueryFilter(evt.target.value)}
+          name="search"
           placeholder="Search movies"
         />
-      </div>
-
-      {/* <form onSubmit={(evt) => changeQueryFilter(evt.target.value)} className={css.form}>
-        <input className={css.input}
-          type="text"
-          value={queryParam}
-          onChange={(evt) => changeQueryFilter(evt.target.value)} placeholder="Search movies"
-        />
-        <button type="submit" className={css.btn}>Search</button>
-      </form> */}
+        <button type="submit" className={css.btn}>
+          Search
+        </button>
+      </form>
 
       <div>
         <ul>

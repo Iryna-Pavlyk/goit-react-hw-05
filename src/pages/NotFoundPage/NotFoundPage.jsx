@@ -4,8 +4,10 @@ import css from "./NotFoundPage.module.css";
 const NotFoundPage = () => {
   return (
     <div className={css.wrap}>
-      Not Found Page. Please go to the
-      <Link to="/">Home Page</Link>
+      <p> Not Found Page. Please go to the </p>
+      <p className={css.link}>
+        <Link to="/">Home Page</Link>
+      </p>
     </div>
   );
 };
