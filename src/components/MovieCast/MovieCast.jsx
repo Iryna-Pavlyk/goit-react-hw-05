@@ -41,6 +41,7 @@ const MovieCast = () => {
               )}
               <p>{item.original_name}</p>
               <p>Character: {item.character}</p>
+              <hr />
             </li>
           );
         })}
