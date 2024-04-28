@@ -1,20 +1,28 @@
 import { useEffect, useState, useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { searchMovie } from "../../movies-api";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParam = searchParams.get("query") ?? "";
+
+  const changeQueryFilter = (newFilter) => {
+    searchParams.set("query", newFilter);
+    setSearchParams(searchParams);
+  };
+
   const location = useLocation();
 
   useEffect(() => {
-    if (query === "") {
+    if (queryParam === "") {
       return;
     }
 
@@ -22,7 +30,7 @@ const MoviesPage = () => {
       try {
         setError(false);
         setLoading(true);
-        const data = await searchMovie(query);
+        const data = await searchMovie(queryParam);
         setMovies(data);
       } catch (error) {
         setError(true);
@@ -31,24 +39,31 @@ const MoviesPage = () => {
       }
     }
     getSearchMovie();
-  }, [query]);
+  }, [queryParam]);
 
   const filteredValues = useMemo(() => {
     return movies.filter((movie) =>
-      movie.original_title.toLowerCase().includes(query.toLowerCase())
+      movie.original_title.toLowerCase().includes(queryParam.toLowerCase())
     );
-  }, [movies, query]);
+  }, [movies, queryParam]);
 
   return (
     <div className={css.wrap}>
-      <form onSubmit={(evt) => setQuery(evt.target.value)}>
+      <input
+        type="text"
+        value={queryParam}
+        onChange={(evt) => changeQueryFilter(evt.target.value)}
+      />
+
+      {/* <form onSubmit={(evt) => changeQueryFilter(evt.target.value)}>
         <input
           type="text"
           value={query}
           onChange={(evt) => setQuery(evt.target.value)}
         />
         <button type="submit">Search</button>
-      </form>
+      </form> */}
+
       <div>
         <ul>
           {filteredValues.map((value) => {
