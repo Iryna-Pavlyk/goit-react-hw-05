@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { searchMovie } from "../../movies-api";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -10,6 +10,8 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     if (query === "") {
@@ -31,17 +33,11 @@ const MoviesPage = () => {
     getSearchMovie();
   }, [query]);
 
-  const filteredValues = movies.filter((movie) =>
-    movie.original_title.toLowerCase().includes(query.toLowerCase())
-  );
-
-  // const filteredValues = useMemo(() => {
-  // return (
-  //   movies.filter((movie) =>
-  //     movie.original_title.toLowerCase().includes(query.toLowerCase())
-  //   ),
-  //   [movies, query]
-  // );
+  const filteredValues = useMemo(() => {
+    return movies.filter((movie) =>
+      movie.original_title.toLowerCase().includes(query.toLowerCase())
+    );
+  }, [movies, query]);
 
   return (
     <div className={css.wrap}>
@@ -58,7 +54,9 @@ const MoviesPage = () => {
           {filteredValues.map((value) => {
             return (
               <li key={value.id}>
-                <Link to={`/movies/${value.id}`}>{value.original_title}</Link>
+                <Link to={`/movies/${value.id}`} state={location}>
+                  {value.original_title}
+                </Link>
               </li>
             );
           })}

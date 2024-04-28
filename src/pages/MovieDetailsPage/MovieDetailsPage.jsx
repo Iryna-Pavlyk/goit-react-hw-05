@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useRef, useState, Suspense } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { getMovieDetails } from "../../movies-api";
 import css from "./MovieDetailsPage.module.css";
 import { useParams } from "react-router-dom";
@@ -11,6 +11,9 @@ const MovieDetailsPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const location = useLocation();
+  const backLinkUrlRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     async function getMovieById() {
@@ -30,6 +33,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={css.wrap}>
+      <Link to={backLinkUrlRef.current}>Go back</Link>
       <ul>
         <li className={css.item}>
           {movies.backdrop_path && (
@@ -92,7 +96,9 @@ const MovieDetailsPage = () => {
       </div>
       <hr />
 
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
 
       {error && <ErrorMessage />}
       {loading && <Loader />}
