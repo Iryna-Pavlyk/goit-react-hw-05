@@ -1,10 +1,10 @@
 import { useEffect, useState, useMemo } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { searchMovie } from "../../movies-api";
-import { CiVault } from "react-icons/ci";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./MoviesPage.module.css";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -21,8 +21,6 @@ const MoviesPage = () => {
     value && setSearchParams({ query: value });
     form.reset();
   };
-
-  const location = useLocation();
 
   useEffect(() => {
     async function getSearchMovie(searchQuery) {
@@ -61,26 +59,8 @@ const MoviesPage = () => {
         </button>
       </form>
 
-      <div>
-        <ul>
-          {filteredValues.map((value) => {
-            return (
-              <li key={value.id}>
-                <div className={css.wrapLink}>
-                  <CiVault className={css.icon} width={14} />
-                  <Link
-                    to={`/movies/${value.id}`}
-                    state={location}
-                    className={css.link}
-                  >
-                    {value.original_title}
-                  </Link>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <MovieList movies={filteredValues} />
+
       {error && <ErrorMessage />}
       {loading && <Loader />}
     </div>
