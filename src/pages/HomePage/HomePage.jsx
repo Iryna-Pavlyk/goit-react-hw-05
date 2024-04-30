@@ -1,8 +1,7 @@
 import css from "./HomePage.module.css";
-import { Link } from "react-router-dom";
 import { getTrendMovie } from "../../movies-api";
 import { useEffect, useState } from "react";
-import { CiVault } from "react-icons/ci";
+import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
@@ -30,20 +29,7 @@ const HomePage = () => {
   return (
     <div className={css.wrap}>
       <h2 className={css.title}>Trending today</h2>
-      <ul>
-        {movies.map((movie) => {
-          return (
-            <li key={movie.id}>
-              <div className={css.wrapLink}>
-                <CiVault className={css.icon} width={14} />
-                <Link to={`/movies/${movie.id}`} className={css.link}>
-                  {movie.original_title}
-                </Link>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <MovieList movies={movies} />
       {error && <ErrorMessage />}
       {loading && <Loader />}
     </div>
